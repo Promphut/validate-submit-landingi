@@ -1,4 +1,5 @@
 (function () {
+  console.log("script init!");
   appendUserAgent();
   const deal_id = genDealID();
   $('input[name="deal_id"]').val(deal_id);
