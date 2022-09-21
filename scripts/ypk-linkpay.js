@@ -6,7 +6,9 @@
   if (defaultPackage) {
     $('select[name="package"]').val(defaultPackage).change();
     let _defaultPackage = defaultPackage.split("/");
-    $('input[name="course"]').val(_defaultPackage[0]).change();
+    $('input[name="course"]')
+      .val(`${_defaultPackage[0]}/${_defaultPackage[0]}`)
+      .change();
     $('input[name="price"]').val(_defaultPackage[1]).change();
     $('input[name="discountCode"]').val(_defaultPackage[2]).change();
   }
@@ -61,6 +63,14 @@ function appendUserAgent() {
       l.pathname
   );
 }
+
+$('select[name="package"]').on("change", function (e) {
+  const package = $(this).val();
+  let _package = package.split("/");
+  $('input[name="course"]').val(`${_package[0]}/${_package[0]}`);
+  $('input[name="price"]').val(_package[1]);
+  $('input[name="discountCode"]').val(_package[2]);
+});
 
 $(document).on("click", 'button[type="submit"]', function (e) {
   let $form = $(this).closest("form");
